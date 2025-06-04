@@ -1,109 +1,140 @@
 # 🌀 Mass-Spring-Damper Simulator (Torch)
 
-This project simulates a **mass-spring-damper (MSD)** system using **PyTorch** for numerical integration and **Matplotlib** for visualization. The simulation models the system's time-domain response to a sinusoidal external force.
+This project simulates a **mass-spring-damper** system using **PyTorch** for numerical integration and **Matplotlib** for visualization. It generates time-domain responses under various excitation types and saves the output as `.csv` and `.png`.
 
 ---
 
 ## 🧠 Background
 
-A mass-spring-damper system is a classic second-order mechanical system governed by the differential equation:
+A mass-spring-damper system is a classic second-order mechanical system governed by the ODE:
 
-m * x''(t) + d * x'(t) + c * x(t) = F(t)
-
+```
+m.ẍ(t) + d.ẋ(t) + c.x(t) = F(t)
+```
 
 Where:
-- `m` is the mass,
-- `d` is the damping coefficient,
-- `c` is the spring stiffness,
-- `F(t)` is the external force applied (in this simulation: sinusoidal),
-- `x(t)` is displacement, and `x'(t)` is velocity.
+- `m` = mass  
+- `d` = damping coefficient  
+- `c` = spring stiffness  
+- `F(t)` = external force (sin, step, square wave, impulse)  
+- `x(t)` = displacement  
+- `ẋ(t)` = velocity  
+- `ẍ(t)` = acceleration
 
 ---
 
 ## 🛠️ Technologies Used
 
-- 🐍 **Python 3**
-- 🔥 **PyTorch** – used for tensor operations and numerical integration
-- 📊 **Matplotlib** – used for plotting displacement and velocity over time
+- 🐍 Python 3
+- 🔥 PyTorch — for modeling and numerical integration
+- 📊 Matplotlib — for plotting simulation results
+- 📄 Pandas — for saving `.csv` files
 
 ---
 
-## 📁 File Overview
+## 📁 Project Structure
 
-- `msd_simulator.py`:  
-  Main script that:
-  - Defines system parameters
-  - Simulates motion via numerical integration
-  - Plots the results
-
----
-
-## ⚙️ Parameters Used
-
-```python
-m = 1.0    # mass (kg)
-d = 0.5    # damping coefficient
-c = 4.0    # spring constant
-F(t) = sin(2π·0.5·t)  # external sinusoidal force
+```
+├── msd_simulator.py        # Main simulation script
+├── README.md               # Project description
+├── .gitignore              # Ensures sim_dataset/ is not tracked by Git
+└── sim_dataset/            # Auto-generated output folder (plots + CSVs)
 ```
 
-- Initial conditions:
-  - Displacement: x(0) = 0
-  - Velocity: x'(0) = 1
+---
+
+<details>
+<summary><strong>⚙️ Simulation Settings</strong></summary>
+
+### System Parameters
+
+```python
+params = {
+  'm': 1.0,    # mass (kg)
+  'd': 0.5,    # damping (Ns/m)
+  'c': 4.0     # spring constant (N/m)
+}
+```
+
+### Input Signal Types
+- `sine`: smooth periodic signal
+- `step`: jumps from 0 to 1 at t=1
+- `square_wave`: toggles between -1 and 1
+- `impulse`: sharp pulse at t=1
+
+### Initial Conditions Used
+- `[0.0, 1.0]`  
+- `[1.0, 0.0]`  
+- `[0.5, -0.5]`  
+- `[0.0, 0.0]`  
+
+</details>
 
 ---
 
-## 📈 Output
+<details>
+<summary><strong>📤 Output Details</strong></summary>
 
-The script produces two plots:
-1. **Displacement** over time
-2. **Velocity** over time
+- A total of **16 simulations** are performed: 4 inputs × 4 initial conditions
+- Each result is saved in:
+  - `.csv` with `time`, `x`, `xdot`
+  - `.png` plot of displacement and velocity
 
-These plots show the damped oscillatory behavior under sinusoidal excitation.
+### Output Folder
+```
+sim_dataset/
+├── sine_x0_0.0_v0_1.0.csv
+├── sine_x0_0.0_v0_1.0.png
+├── ...
+```
+
+</details>
 
 ---
 
 ## ▶️ How to Run
 
-### 1. Install dependencies:
-
 ```bash
-pip install torch matplotlib
-```
+# Step 1: Install dependencies
+pip install torch matplotlib pandas
 
-### 2. Run the script:
-
-```bash
+# Step 2: Run the simulation
 python msd_simulator.py
 ```
 
-The simulation will run and display the displacement and velocity plots.
+> This creates a `sim_dataset/` folder in the **same directory as the script**.
 
 ---
 
-## 🧪 Simulation Plot
+## 🧪 Example Output Plot
 
-![Simulation Output](output.png)
+Each plot includes:
+- Displacement `x(t)`
+- Velocity `ẋ(t)`
 
-_(Note: Image shown here is an example illustration of a damped oscillator)_
+Example:
+![Example](output.png)
 
 ---
 
-## 📌 Notes
+## 📝 Notes
 
-- This is a basic simulation using explicit Euler integration (via forward stepping in PyTorch).
-- You can modify parameters to simulate different types of damping (under/over/critical).
+- Euler integration is used (explicit method).
+- Easy to modify or extend for:
+  - Nonlinear dynamics
+  - Stochastic excitation
+  - Custom simulation ranges
 
 ---
 
 ## 📚 References
 
-- [Wikipedia: Damped Harmonic Oscillator](https://en.wikipedia.org/wiki/Damped_harmonic_oscillator)
-- [PyTorch Documentation](https://pytorch.org/docs/stable/index.html)
-- [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+- [Damped Harmonic Oscillator – Wikipedia](https://en.wikipedia.org/wiki/Damped_harmonic_oscillator)
+- [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
+- [Matplotlib Docs](https://matplotlib.org/stable/contents.html)
 
 ---
 
 ## 📜 License
 
-This project is for educational use. Feel free to modify and experiment!
+This repository is intended for educational and experimental use. Contributions are welcome!

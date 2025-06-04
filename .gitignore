@@ -1,0 +1,20 @@
+# Ignore simulation output folder
+sim_dataset/
+
+# Ignore common Python bytecode and cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# Ignore environment folders
+.env/
+.venv/
+venv/
+ENV/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
