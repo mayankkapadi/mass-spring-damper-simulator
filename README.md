@@ -132,9 +132,3 @@ Example:
 - [Damped Harmonic Oscillator – Wikipedia](https://en.wikipedia.org/wiki/Damped_harmonic_oscillator)
 - [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
 - [Matplotlib Docs](https://matplotlib.org/stable/contents.html)
-
----
-
-## 📜 License
-
-This repository is intended for educational and experimental use. Contributions are welcome!
