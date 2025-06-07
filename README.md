@@ -1,10 +1,10 @@
-# 🌀 Mass-Spring-Damper Simulator (Torch)
+# Mass-Spring-Damper Simulator (Torch)
 
 This project simulates a **mass-spring-damper** system using **PyTorch** for numerical integration and **Matplotlib** for visualization. It generates time-domain responses under various excitation types and saves the output as `.csv` and `.png`.
 
 ---
 
-## 🧠 Background
+## Background
 
 A mass-spring-damper system is a classic second-order mechanical system governed by the ODE:
 
@@ -23,16 +23,16 @@ Where:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-- 🐍 Python 3
-- 🔥 PyTorch — for modeling and numerical integration
-- 📊 Matplotlib — for plotting simulation results
-- 📄 Pandas — for saving `.csv` files
+- Python 3
+- PyTorch — for modeling and numerical integration
+- Matplotlib — for plotting simulation results
+- Pandas — for saving `.csv` files
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── msd_simulator.py        # Main simulation script
@@ -44,7 +44,7 @@ Where:
 ---
 
 <details>
-<summary><strong>⚙️ Simulation Settings</strong></summary>
+<summary><strong>Simulation Settings</strong></summary>
 
 ### System Parameters
 
@@ -73,7 +73,7 @@ params = {
 ---
 
 <details>
-<summary><strong>📤 Output Details</strong></summary>
+<summary><strong>Output Details</strong></summary>
 
 - A total of **16 simulations** are performed: 4 inputs × 4 initial conditions
 - Each result is saved in:
@@ -92,7 +92,7 @@ sim_dataset/
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 ```bash
 # Step 1: Install dependencies
@@ -102,11 +102,11 @@ pip install torch matplotlib pandas
 python msd_simulator.py
 ```
 
-> This creates a `sim_dataset/` folder in the **same directory as the script**.
+> This creates a `sim_dataset/` folder in the same directory as the script.
 
 ---
 
-## 🧪 Example Output Plot
+## Example Output Plot
 
 Each plot includes:
 - Displacement `x(t)`
@@ -117,7 +117,7 @@ Example:
 
 ---
 
-## 📝 Notes
+## Notes
 
 - Euler integration is used (explicit method).
 - Easy to modify or extend for:
@@ -127,7 +127,7 @@ Example:
 
 ---
 
-## 📚 References
+## References
 
 - [Damped Harmonic Oscillator – Wikipedia](https://en.wikipedia.org/wiki/Damped_harmonic_oscillator)
 - [PyTorch Docs](https://pytorch.org/docs/stable/index.html)
